@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coded Studio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React and ReactDOM CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <style>
+      @keyframes spin-slow {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .animate-spin-slow {
+        animation: spin-slow 20s linear infinite;
+      }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 text-white">
+
+    <!-- Root div for React -->
+    <div id="root"></div>
+
+    <footer class="w-full mt-16 py-6 text-center text-sm bg-black bg-opacity-30">
+        <p>Coded Studio © 2024. All Rights Reserved.</p>
+    </footer>
+
+    <script type="text/javascript">
+      const { useState } = React;
+
+      function App() {
+        const [message, setMessage] = useState("Join our coding community!");
+        const [btnText, setBtnText] = useState("Get Started");
+
+        const handleClick = () => {
+          setMessage("You have joined the Coded Studio!");
+          setBtnText("Welcome Aboard!");
+        };
+
+        return (
+          <div className="min-h-screen flex flex-col justify-center items-center">
+            {/* Navbar */}
+            <nav className="w-full p-6 flex justify-between items-center bg-opacity-20 backdrop-blur-lg">
+              <h1 className="text-4xl font-bold">Coded Studio</h1>
+              <ul className="flex space-x-4 text-lg">
+                <li className="hover:text-gray-200 transition duration-300 cursor-pointer">Home</li>
+                <li className="hover:text-gray-200 transition duration-300 cursor-pointer">Projects</li>
+                <li className="hover:text-gray-200 transition duration-300 cursor-pointer">Contact</li>
+              </ul>
+            </nav>
+
+            {/* Main Section */}
+            <main className="flex flex-col justify-center items-center mt-10 text-center">
+              <h2 className="text-6xl font-extrabold mb-4 animate-bounce">Welcome to Coded Studio</h2>
+              <p className="text-2xl mb-10 max-w-2xl">{message}</p>
+
+              {/* Button with hover animation and click interaction */}
+              <button 
+                className="bg-white text-purple-700 px-6 py-3 rounded-full font-semibold hover:bg-purple-700 hover:text-white transition duration-500 transform hover:scale-105"
+                onClick={handleClick}
+              >
+                {btnText}
+              </button>
+            </main>
+
+            {/* Animated Illustration */}
+            <section className="mt-16">
+              <div className="w-96 h-96 bg-white rounded-full relative overflow-hidden animate-spin-slow">
+                <img
+                  src="https://source.unsplash.com/800x600/?coding"
+                  alt="Coding Illustration"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </section>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
